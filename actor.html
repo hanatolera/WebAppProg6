@@ -3,9 +3,10 @@
 
 <head>
     <title>Actor Guessing Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="container">
 
     <h2>Actors by Hana Tolera</h2>
 
@@ -16,11 +17,11 @@
         <label for="guess">Who is the actor</label>
         <input type="text" id="guess"> <br>
 
-        <input type="button" onclick="checkActor()" value="Check the guess">
+        <input type="button" id="checkButton" onclick="checkActor()" value="Check the guess">
     </form>
 
 
-    <p id="result">This text will be replaced </p>
+    <div id="result">This text will be replaced</div>
     <div>
         <img id="foodPic" src="Lasagna.jpg" width="150" height="150" onclick="updatePic()">
     </div>
@@ -43,6 +44,15 @@
 
             document.getElementById("result").innerHTML =
                 "Correct: " + correct + " Not Correct: " + notCorrect;
+
+            if (notCorrect > 10) {
+                document.getElementById("checkButton").setAttribute("onclick", "tooManyWrong()");
+            }
+
+        }
+
+        function tooManyWrong() {
+            alert("Sorry, too many wrong guesses.");
         }
 
         function updatePic() {
